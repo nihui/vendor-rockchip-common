@@ -1,0 +1,21 @@
+#!/vendor/bin/sh
+
+SLEEP_TIME=1
+while true
+do
+        do
+		# do nothing ...
+                case $i in
+                        1)
+                                ;;
+                        2)
+                                ;;
+                        3)
+                                ;;
+                        *)
+                                ;;
+                esac
+                sleep ${SLEEP_TIME}
+        done
+done
+

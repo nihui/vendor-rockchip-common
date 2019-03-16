@@ -1,0 +1,34 @@
+#!/vendor/bin/sh
+
+SLEEP_TIME=1
+while true
+do
+        # Set system work led
+        for i in `seq 0 3`
+        do
+                case $i in
+                        1)
+                                echo 1 > /sys/class/leds/system_work_led1/brightness
+                                echo 0 > /sys/class/leds/system_work_led2/brightness
+                                echo 0 > /sys/class/leds/system_work_led3/brightness
+                                ;;
+                        2)
+                                echo 0 > /sys/class/leds/system_work_led1/brightness
+                                echo 1 > /sys/class/leds/system_work_led2/brightness
+                                echo 0 > /sys/class/leds/system_work_led3/brightness
+                                ;;
+                        3)
+                                echo 0 > /sys/class/leds/system_work_led1/brightness
+                                echo 0 > /sys/class/leds/system_work_led2/brightness
+                                echo 1 > /sys/class/leds/system_work_led3/brightness
+                                ;;
+                        *)
+                                echo 0 > /sys/class/leds/system_work_led1/brightness
+                                echo 0 > /sys/class/leds/system_work_led2/brightness
+                                echo 0 > /sys/class/leds/system_work_led3/brightness
+                                ;;
+                esac
+                sleep ${SLEEP_TIME}
+        done
+done
+
