@@ -12,7 +12,7 @@ LOCAL_MODULE_SUFFIX := .so
 ifneq ($(filter rk312x rk3126c rk3128, $(TARGET_BOARD_PLATFORM)), )
 LOCAL_SRC_FILES :=lib/$(TARGET_ARCH)/mid/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 endif
-ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328, $(strip $(TARGET_BOARD_PLATFORM))), )
+ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328 rk3228h, $(strip $(TARGET_BOARD_PLATFORM))), )
 	ifneq ($(strip $(TARGET_2ND_ARCH)), )
 		LOCAL_MULTILIB := both
 		LOCAL_SRC_FILES_$(TARGET_ARCH) := lib/$(TARGET_ARCH)/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
@@ -83,7 +83,7 @@ endif
 ifneq ($(filter rk312x rk3126c rk3128, $(TARGET_BOARD_PLATFORM)), )
 LOCAL_SRC_FILES := lib/$(TARGET_ARCH)/mid/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 endif
-ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328, $(strip $(TARGET_BOARD_PLATFORM))), )
+ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328 rk3228h, $(strip $(TARGET_BOARD_PLATFORM))), )
 	ifneq ($(strip $(TARGET_2ND_ARCH)), )
 		LOCAL_MULTILIB := both
 		LOCAL_SRC_FILES_$(TARGET_ARCH) := lib/$(TARGET_ARCH)/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
@@ -143,7 +143,7 @@ endif
 
 # use secure video path
 USE_SVP := false
-ifneq ($(filter rk3328, $(strip $(TARGET_BOARD_PLATFORM))), )
+ifneq ($(filter rk3328 rk3228h, $(strip $(TARGET_BOARD_PLATFORM))), )
 USE_SVP := true
 endif
 
@@ -163,7 +163,7 @@ endif
 
 # use new vpu framework mpp
 USE_MPP := false
-ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3288 rk3328 rk3126c rk3366 rk3368 rk3399 rk3326 rk3399pro, $(strip $(TARGET_BOARD_PLATFORM))), )
+ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3288 rk3328 rk3126c rk3366 rk3368 rk3399 rk3326 rk3399pro rk3228h, $(strip $(TARGET_BOARD_PLATFORM))), )
 USE_MPP := true
 endif 
 
@@ -256,7 +256,7 @@ else
 LOCAL_SRC_FILES := lib/arm/mpp/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 endif
 
-ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328, $(strip $(TARGET_BOARD_PLATFORM))), )
+ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328 rk3228h, $(strip $(TARGET_BOARD_PLATFORM))), )
 LOCAL_SRC_FILES := lib/arm/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 endif
 include $(BUILD_PREBUILT)
@@ -315,7 +315,7 @@ LOCAL_SRC_FILES :=lib/arm/mpp/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 endif
 endif
 
-ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328, $(strip $(TARGET_BOARD_PLATFORM))), )
+ifneq ($(filter rk3228 rk3229 rk3128h rk322x rk3328 rk3228h, $(strip $(TARGET_BOARD_PLATFORM))), )
 ifneq ($(strip $(TARGET_2ND_ARCH)), )
 LOCAL_SRC_FILES_$(TARGET_2ND_ARCH) :=lib/arm/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 else
@@ -327,7 +327,7 @@ include $(BUILD_PREBUILT)
 endif
 #end use new vpu framework mpp
 
-ifneq ($(filter rk3128  rk3228 rk3229 rk3128h rk322x rk3328 rk3399 rk3288 rk3399pro, $(strip $(TARGET_BOARD_PLATFORM))), )
+ifneq ($(filter rk3128  rk3228 rk3229 rk3128h rk322x rk3328 rk3399 rk3288 rk3399pro rk3228h, $(strip $(TARGET_BOARD_PLATFORM))), )
 include $(CLEAR_VARS)
 LOCAL_MODULE := libffmpeg_vp9dec
 LOCAL_MODULE_TAGS := optional
@@ -528,12 +528,17 @@ ifeq ($(strip $(TARGET_BOARD_PLATFORM)), rk3328)
 LOCAL_SRC_FILES_$(TARGET_ARCH) := lib/$(TARGET_ARCH)/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 LOCAL_SRC_FILES_$(TARGET_2ND_ARCH) := lib/$(TARGET_2ND_ARCH)/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 else
+ifeq ($(strip $(TARGET_BOARD_PLATFORM)), rk3228h)
+LOCAL_SRC_FILES_$(TARGET_ARCH) := lib/$(TARGET_ARCH)/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+LOCAL_SRC_FILES_$(TARGET_2ND_ARCH) := lib/$(TARGET_2ND_ARCH)/rk322x/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+else
 ifneq ($(filter px5%, $(PRODUCT_BUILD_MODULE)), )
 LOCAL_SRC_FILES_$(TARGET_ARCH) := lib/$(TARGET_ARCH)/px5/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 LOCAL_SRC_FILES_$(TARGET_2ND_ARCH) := lib/$(TARGET_2ND_ARCH)/px5/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 else							
 LOCAL_SRC_FILES_$(TARGET_ARCH) := lib/$(TARGET_ARCH)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 LOCAL_SRC_FILES_$(TARGET_2ND_ARCH) := lib/$(TARGET_2ND_ARCH)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)			
+endif
 endif
 endif
 endif

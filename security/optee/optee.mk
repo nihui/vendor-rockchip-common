@@ -7,7 +7,8 @@ else
 OPTEE_DIR := vendor/rockchip/common/security/optee/v1
 PRODUCT_COPY_FILES += \
 	$(OPTEE_DIR)/ta/258be795-f9ca-40e6-a8699ce6886c5d5d.ta:vendor/lib/optee_armtz/258be795-f9ca-40e6-a8699ce6886c5d5d.ta	\
-	$(OPTEE_DIR)/ta/0b82bae5-0cd0-49a5-9521516dba9c43ba.ta:vendor/lib/optee_armtz/0b82bae5-0cd0-49a5-9521516dba9c43ba.ta
+	$(OPTEE_DIR)/ta/0b82bae5-0cd0-49a5-9521516dba9c43ba.ta:vendor/lib/optee_armtz/0b82bae5-0cd0-49a5-9521516dba9c43ba.ta	\
+	$(OPTEE_DIR)/ta/30d4aab6-59c8-11e9-8647d663bd873d93.ta:vendor/lib/optee_armtz/30d4aab6-59c8-11e9-8647d663bd873d93.ta
 endif
 
 PRODUCT_COPY_FILES += \
@@ -27,13 +28,15 @@ PRODUCT_COPY_FILES += \
 	$(OPTEE_DIR)/lib/arm64/keystore.rk30board.so:vendor/lib64/hw/keystore.rk30board.so	\
 	$(OPTEE_DIR)/lib/arm64/libRkTeeGatekeeper.so:vendor/lib64/libRkTeeGatekeeper.so	\
 	$(OPTEE_DIR)/lib/arm64/librkgatekeeper.so:vendor/lib64/librkgatekeeper.so	\
-	$(OPTEE_DIR)/lib/arm64/gatekeeper.rk30board.so:vendor/lib64/hw/gatekeeper.rk30board.so
+	$(OPTEE_DIR)/lib/arm64/gatekeeper.rk30board.so:vendor/lib64/hw/gatekeeper.rk30board.so	\
+	$(OPTEE_DIR)/lib/arm64/libRkAcVerify.so:vendor/lib64/libRkAcVerify.so
 endif
 
 ifeq ($(strip $(TARGET_ARCH)), arm64)
 PRODUCT_COPY_FILES += \
 	$(OPTEE_DIR)/lib/arm64/tee-supplicant:vendor/bin/tee-supplicant        \
-	$(OPTEE_DIR)/lib/arm64/libteec.so:vendor/lib64/libteec.so
+	$(OPTEE_DIR)/lib/arm64/libteec.so:vendor/lib64/libteec.so	\
+	$(OPTEE_DIR)/lib/arm64/rk_sn_verity:vendor/bin/rk_sn_verity
 else
 PRODUCT_COPY_FILES += \
         $(OPTEE_DIR)/lib/arm/tee-supplicant:vendor/bin/tee-supplicant
