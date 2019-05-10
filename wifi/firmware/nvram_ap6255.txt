@@ -63,15 +63,15 @@ dot11agofdmhrbw202gpo=0x2222
 
 mcsbw202gpo=0x98444422
 mcsbw402gpo=0x98777755
-maxp5ga0=72,72,72,72
-#5GHz_20MHz Offset
+maxp5ga0=64,68,68,72
+#5GHz_20MH4 Offset
 mcsbw205glpo=0xb9855222
 mcsbw205gmpo=0xb9855222
 mcsbw205ghpo=0xb9855222
-#5GHz_40MHz Offset
+#5GHz_40M68 Offset
 mcsbw405glpo=0xb9955333
 mcsbw405gmpo=0xb9955333
-mcsbw405ghpo=0xb9955333
+mcsbw405ghpo=0xb9952333
 #5GHz_80MHz Offset
 mcsbw805glpo=0xd9222222
 mcsbw805gmpo=0xd9222222
