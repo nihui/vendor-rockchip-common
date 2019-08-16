@@ -1,34 +1,48 @@
 #!/vendor/bin/sh
 
-SLEEP_TIME=1
-while true
-do
-        # Set system work led
-        for i in `seq 0 3`
-        do
-                case $i in
-                        1)
-                                echo 1 > /sys/class/leds/system_work_led1/brightness
-                                echo 0 > /sys/class/leds/system_work_led2/brightness
-                                echo 0 > /sys/class/leds/system_work_led3/brightness
-                                ;;
-                        2)
-                                echo 0 > /sys/class/leds/system_work_led1/brightness
-                                echo 1 > /sys/class/leds/system_work_led2/brightness
-                                echo 0 > /sys/class/leds/system_work_led3/brightness
-                                ;;
-                        3)
-                                echo 0 > /sys/class/leds/system_work_led1/brightness
-                                echo 0 > /sys/class/leds/system_work_led2/brightness
-                                echo 1 > /sys/class/leds/system_work_led3/brightness
-                                ;;
-                        *)
-                                echo 0 > /sys/class/leds/system_work_led1/brightness
-                                echo 0 > /sys/class/leds/system_work_led2/brightness
-                                echo 0 > /sys/class/leds/system_work_led3/brightness
-                                ;;
-                esac
-                sleep ${SLEEP_TIME}
-        done
-done
+function led_disp()
+{
+	case $1 in
+		blue) 
+			echo 1 > /sys/class/leds/system_work_led1/brightness
+			echo 0 > /sys/class/leds/system_work_led2/brightness
+			echo 0 > /sys/class/leds/system_work_led3/brightness
+			;;
+		red) 
+			echo 0 > /sys/class/leds/system_work_led1/brightness
+			echo 1 > /sys/class/leds/system_work_led2/brightness
+			echo 0 > /sys/class/leds/system_work_led3/brightness
+			;;
+		green) 
+			echo 0 > /sys/class/leds/system_work_led1/brightness
+			echo 0 > /sys/class/leds/system_work_led2/brightness
+			echo 1 > /sys/class/leds/system_work_led3/brightness
+			;;
+		white)
+			echo 1 > /sys/class/leds/system_work_led1/brightness
+			echo 1 > /sys/class/leds/system_work_led2/brightness
+			echo 1 > /sys/class/leds/system_work_led3/brightness
+			;;
+		black) 
+			echo 0 > /sys/class/leds/system_work_led1/brightness
+			echo 0 > /sys/class/leds/system_work_led2/brightness
+			echo 0 > /sys/class/leds/system_work_led3/brightness
+			;;
+		*)
+			;;
+	esac
+}
 
+if [ $# -eq 0 ]; then
+		led_disp blue
+		sleep 1
+		led_disp red
+		sleep 1
+		led_disp green
+		sleep 1
+		led_disp white
+		sleep 1
+		led_disp green
+else
+	led_disp $1
+fi
